@@ -1,0 +1,9 @@
+{
+  "name": "demo-apex-pkg",
+  "version": "1.0.0",
+  "description": "Minimal npm package that ships Apex metadata. Deliberately has no lifecycle scripts and no dependencies.",
+  "license": "MIT",
+  "files": [
+    "sfdx-source"
+  ]
+}
