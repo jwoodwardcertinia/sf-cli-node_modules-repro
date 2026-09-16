@@ -180,20 +180,17 @@ no longer descends into it.
 
 Bisected: 1.38.9 works, 1.38.10 / 1.39.x / 1.40.0 / 1.41.7 all fail.
 
-Note that this change is *correct*. Native git does not descend symlinked
-directories — it records the symlink itself as a blob — so isomorphic-git was
-the one diverging, and #2382 brought it into line. There is no case for
-reverting it.
+This change brings isomorphic-git closer to native git, which records a
+symlink as a blob rather than descending into it.
 
-The point is what the two changes mean together, not that either is wrong on
-its own:
+It is mentioned here only to explain why symlinking out of `node_modules` is
+not available as a workaround for the issue above. Whether source tracking
+should follow symlinked package directories is a separate question, and not
+one this report is trying to settle.
 
-- metadata under `node_modules` is excluded from tracking, and
-- symlinking out of `node_modules` no longer works, by design and permanently.
-
-Between them there is now no supported way to ship Salesforce metadata as an
-npm package and deploy it. The symlink route is a dead end that will not
-reopen, so the only remaining path is the first one.
+The practical position today is that neither route works: metadata under
+`node_modules` is excluded from tracking, and moving it out of the way with a
+symlink is no longer effective either.
 
 ## Ask
 
